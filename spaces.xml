@@ -1,0 +1,389 @@
+<?xml version="1.0"?>
+<spaces>
+    <space name="Go">
+        <type>Special</type>
+    </space>
+    <space name="Mediterranean Avenue">
+        <type>Property</type>
+        <group>Brown</group>
+        <price>60</price>
+        <house_price>50</house_price>
+        <rent>
+            <standard>2</standard>
+            <one_house>10</one_house>
+            <two_houses>30</two_houses>
+            <three_houses>90</three_houses>
+            <four_houses>160</four_houses>
+            <hotel>250</hotel>
+        </rent>
+    </space>
+    <space name="Community Chest 1">
+        <type>Draw</type>
+        <draw_type>Community Chest</draw_type>
+    </space>
+    <space name="Baltic Avenue">
+        <type>Property</type>
+        <group>Brown</group>
+        <price>60</price>
+        <house_price>50</house_price>
+        <rent>
+            <standard>4</standard>
+            <one_house>20</one_house>
+            <two_houses>60</two_houses>
+            <three_houses>180</three_houses>
+            <four_houses>320</four_houses>
+            <hotel>450</hotel>
+        </rent>
+    </space>
+    <space name="Income Tax">
+        <type>Special</type>
+    </space>
+    <space name="Reading Railroad">
+        <type>Station</type>
+        <price>200</price>
+        <rent>
+            <standard>50</standard>
+        </rent>
+    </space>
+    <space name="Oriental Avenue">
+        <type>Property</type>
+        <group>Light Blue</group>
+        <price>100</price>
+        <house_price>50</house_price>
+        <rent>
+            <standard>6</standard>
+            <one_house>30</one_house>
+            <two_houses>90</two_houses>
+            <three_houses>270</three_houses>
+            <four_houses>400</four_houses>
+            <hotel>550</hotel>
+        </rent>
+    </space>
+    <space name="Chance 1">
+        <type>Draw</type>
+        <draw_type>Chance</draw_type>
+    </space>
+    <space name="Vermont Avenue">
+        <type>Property</type>
+        <group>Light Blue</group>
+        <price>100</price>
+        <house_price>50</house_price>
+        <rent>
+            <standard>6</standard>
+            <one_house>30</one_house>
+            <two_houses>90</two_houses>
+            <three_houses>270</three_houses>
+            <four_houses>400</four_houses>
+            <hotel>550</hotel>
+        </rent>
+    </space>
+    <space name="Connecticut Avenue">
+        <type>Property</type>
+        <group>Light Blue</group>
+        <price>120</price>
+        <house_price>50</house_price>
+        <rent>
+            <standard>8</standard>
+            <one_house>40</one_house>
+            <two_houses>100</two_houses>
+            <three_houses>300</three_houses>
+            <four_houses>450</four_houses>
+            <hotel>600</hotel>
+        </rent>
+    </space>
+    <space name="Jail">
+        <type>Special</type>
+    </space>
+    <space name="St Charles Place">
+        <type>Property</type>
+        <group>Pink</group>
+        <price>140</price>
+        <house_price>100</house_price>
+        <rent>
+            <standard>10</standard>
+            <one_house>50</one_house>
+            <two_houses>150</two_houses>
+            <three_houses>450</three_houses>
+            <four_houses>625</four_houses>
+            <hotel>750</hotel>
+        </rent>
+    </space>
+    <space name="Electric Company">
+        <type>Utility</type>
+        <price>150</price>
+    </space>
+    <space name="States Avenue">
+        <type>Property</type>
+        <group>Pink</group>
+        <price>140</price>
+        <house_price>100</house_price>
+        <rent>
+            <standard>10</standard>
+            <one_house>50</one_house>
+            <two_houses>150</two_houses>
+            <three_houses>450</three_houses>
+            <four_houses>625</four_houses>
+            <hotel>750</hotel>
+        </rent>
+    </space>
+    <space name="Virginia Avenue">
+        <type>Property</type>
+        <group>Pink</group>
+        <price>160</price>
+        <house_price>100</house_price>
+        <rent>
+            <standard>12</standard>
+            <one_house>60</one_house>
+            <two_houses>180</two_houses>
+            <three_houses>500</three_houses>
+            <four_houses>700</four_houses>
+            <hotel>900</hotel>
+        </rent>
+    </space>
+    <space name="Pennsylvania Railroad">
+        <type>Station</type>
+        <price>200</price>
+        <rent>
+            <standard>50</standard>
+        </rent>
+    </space>
+    <space name="St James Place">
+        <type>Property</type>
+        <group>Orange</group>
+        <price>180</price>
+        <house_price>100</house_price>
+        <rent>
+            <standard>14</standard>
+            <one_house>70</one_house>
+            <two_houses>200</two_houses>
+            <three_houses>550</three_houses>
+            <four_houses>750</four_houses>
+            <hotel>950</hotel>
+        </rent>
+    </space>
+    <space name="Tennessee Avenue">
+        <type>Property</type>
+        <group>Orange</group>
+        <price>180</price>
+        <house_price>100</house_price>
+        <rent>
+            <standard>14</standard>
+            <one_house>70</one_house>
+            <two_houses>200</two_houses>
+            <three_houses>550</three_houses>
+            <four_houses>750</four_houses>
+            <hotel>950</hotel>
+        </rent>
+    </space>
+    <space name="Community Chest 2">
+        <type>Draw</type>
+        <draw_type>Community Chest</draw_type>
+    </space>
+    <space name="New York Avenue">
+        <type>Property</type>
+        <group>Orange</group>
+        <price>200</price>
+        <house_price>100</house_price>
+        <rent>
+            <standard>16</standard>
+            <one_house>80</one_house>
+            <two_houses>220</two_houses>
+            <three_houses>600</three_houses>
+            <four_houses>800</four_houses>
+            <hotel>1000</hotel>
+        </rent>
+    </space>
+    <space name="Free Parking">
+        <type>Special</type>
+    </space>
+    <space name="Kentucky Avenue">
+        <type>Property</type>
+        <group>Red</group>
+        <price>220</price>
+        <house_price>150</house_price>
+        <rent>
+            <standard>18</standard>
+            <one_house>90</one_house>
+            <two_houses>250</two_houses>
+            <three_houses>700</three_houses>
+            <four_houses>875</four_houses>
+            <hotel>1050</hotel>
+        </rent>
+    </space>
+    <space name="Chance 2">
+        <type>Draw</type>
+        <draw_type>Chance</draw_type>
+    </space>
+    <space name="Indiana Avenue">
+        <type>Property</type>
+        <group>Red</group>
+        <price>220</price>
+        <house_price>150</house_price>
+        <rent>
+            <standard>18</standard>
+            <one_house>90</one_house>
+            <two_houses>250</two_houses>
+            <three_houses>700</three_houses>
+            <four_houses>875</four_houses>
+            <hotel>1050</hotel>
+        </rent>
+    </space>
+    <space name="Illinois Avenue">
+        <type>Property</type>
+        <group>Red</group>
+        <price>240</price>
+        <house_price>150</house_price>
+        <rent>
+            <standard>20</standard>
+            <one_house>100</one_house>
+            <two_houses>300</two_houses>
+            <three_houses>750</three_houses>
+            <four_houses>925</four_houses>
+            <hotel>1100</hotel>
+        </rent>
+    </space>
+    <space name="B &amp; O Railroad">
+        <type>Station</type>
+        <price>200</price>
+        <rent>
+            <standard>50</standard>
+        </rent>
+    </space>
+    <space name="Atlantic Avenue">
+        <type>Property</type>
+        <group>Yellow</group>
+        <price>260</price>
+        <house_price>150</house_price>
+        <rent>
+            <standard>22</standard>
+            <one_house>110</one_house>
+            <two_houses>330</two_houses>
+            <three_houses>800</three_houses>
+            <four_houses>975</four_houses>
+            <hotel>1150</hotel>
+        </rent>
+    </space>
+    <space name="Ventnor Avenue">
+        <type>Property</type>
+        <group>Yellow</group>
+        <price>260</price>
+        <house_price>150</house_price>
+        <rent>
+            <standard>22</standard>
+            <one_house>110</one_house>
+            <two_houses>330</two_houses>
+            <three_houses>800</three_houses>
+            <four_houses>975</four_houses>
+            <hotel>1150</hotel>
+        </rent>
+    </space>
+    <space name="Water Works">
+        <type>Utility</type>
+        <price>150</price>
+    </space>
+    <space name="Marvin Gardens">
+        <type>Property</type>
+        <group>Yellow</group>
+        <price>280</price>
+        <house_price>150</house_price>
+        <rent>
+            <standard>24</standard>
+            <one_house>120</one_house>
+            <two_houses>360</two_houses>
+            <three_houses>850</three_houses>
+            <four_houses>1025</four_houses>
+            <hotel>1200</hotel>
+        </rent>
+    </space>
+    <space name="Go To Jail">
+        <type>Special</type>
+    </space>
+    <space name="Pacific Avenue">
+        <type>Property</type>
+        <group>Green</group>
+        <price>300</price>
+        <house_price>200</house_price>
+        <rent>
+            <standard>26</standard>
+            <one_house>130</one_house>
+            <two_houses>390</two_houses>
+            <three_houses>900</three_houses>
+            <four_houses>1100</four_houses>
+            <hotel>1275</hotel>
+        </rent>
+    </space>
+    <space name="North Carolina Avenue">
+        <type>Property</type>
+        <group>Green</group>
+        <price>300</price>
+        <house_price>200</house_price>
+        <rent>
+            <standard>26</standard>
+            <one_house>130</one_house>
+            <two_houses>390</two_houses>
+            <three_houses>900</three_houses>
+            <four_houses>1100</four_houses>
+            <hotel>1275</hotel>
+        </rent>
+    </space>
+    <space name="Community Chest 3">
+        <type>Draw</type>
+        <draw_type>Community Chest</draw_type>
+    </space>
+    <space name="Pennsylvania Avenue">
+        <type>Property</type>
+        <group>Green</group>
+        <price>320</price>
+        <house_price>200</house_price>
+        <rent>
+            <standard>28</standard>
+            <one_house>150</one_house>
+            <two_houses>450</two_houses>
+            <three_houses>1000</three_houses>
+            <four_houses>1200</four_houses>
+            <hotel>1400</hotel>
+        </rent>
+    </space>
+    <space name="Short Line">
+        <type>Station</type>
+        <price>200</price>
+        <rent>
+            <standard>50</standard>
+        </rent>
+    </space>
+    <space name="Chance 3">
+        <type>Draw</type>
+        <draw_type>Chance</draw_type>
+    </space>
+    <space name="Park Place">
+        <type>Property</type>
+        <group>Dark Blue</group>
+        <price>350</price>
+        <house_price>200</house_price>
+        <rent>
+            <standard>35</standard>
+            <one_house>175</one_house>
+            <two_houses>500</two_houses>
+            <three_houses>1100</three_houses>
+            <four_houses>1300</four_houses>
+            <hotel>1500</hotel>
+        </rent>
+    </space>
+    <space name="Luxury Tax">
+        <type>Special</type>
+    </space>
+    <space name="Board Walk">
+        <type>Property</type>
+        <group>Dark Blue</group>
+        <price>400</price>
+        <house_price>200</house_price>
+        <rent>
+            <standard>50</standard>
+            <one_house>200</one_house>
+            <two_houses>600</two_houses>
+            <three_houses>1400</three_houses>
+            <four_houses>1700</four_houses>
+            <hotel>2000</hotel>
+        </rent>
+    </space>
+</spaces>

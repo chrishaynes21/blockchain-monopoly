@@ -1,0 +1,180 @@
+<?xml version="1.0"?>
+<draw_cards>
+    <community_chest name="Advance to Go">
+        <type>Move</type>
+        <index>0</index>
+        <description>Advance to "Go". (Collect $200)</description>
+    </community_chest>
+    <community_chest name="Back Error">
+        <type>Receive</type>
+        <amount>200</amount>
+        <description>Back error in your favor. Collect $200</description>
+    </community_chest>
+    <community_chest name="Doctor's Fees">
+        <type>Pay</type>
+        <amount>50</amount>
+        <description>Doctor's fees. Pay $50.</description>
+    </community_chest>
+    <community_chest name="Sale of Stock">
+        <type>Receive</type>
+        <amount>50</amount>
+        <description>From sale of stock you get $50.</description>
+    </community_chest>
+    <community_chest name="Get out of Jail">
+        <type>Hold</type>
+        <description>Get Out of Jail Free. This card may be kept until needed or sold/traded.</description>
+    </community_chest>
+    <community_chest name="Go to Jail">
+        <type>Move</type>
+        <index>10</index>
+        <description>Go directly to jail. Do not pass Go, Do not collect $200.</description>
+    </community_chest>
+    <community_chest name="Grand Opera Night">
+        <type>Receive All</type>
+        <amount>50</amount>
+        <description>Grand Opera Night. Collect $50 from every player for opening night seats.</description>
+    </community_chest>
+    <community_chest name="Holiday Fund">
+        <type>Receive</type>
+        <amount>100</amount>
+        <description>Holiday Fund matures. Receive $100.</description>
+    </community_chest>
+    <community_chest name="Tax Refund">
+        <type>Receive</type>
+        <amount>20</amount>
+        <description>Income tax refund. Collect $20.</description>
+    </community_chest>
+    <community_chest name="Birthday">
+        <type>Receive All</type>
+        <amount>10</amount>
+        <description>It is your birthday. Collect $10 from every player.</description>
+    </community_chest>
+    <community_chest name="Life Insurance">
+        <type>Receive</type>
+        <amount>100</amount>
+        <description>Life insurance matures – Collect $100</description>
+    </community_chest>
+    <community_chest name="Hospital Fees">
+        <type>Pay</type>
+        <amount>50</amount>
+        <description>Hospital Fees. Pay $50.</description>
+    </community_chest>
+    <community_chest name="School Fees">
+        <type>Pay</type>
+        <amount>50</amount>
+        <description>School fees. Pay $50.</description>
+    </community_chest>
+    <community_chest name="Consultancy Fee">
+        <type>Receive</type>
+        <amount>25</amount>
+        <description>Receive $25 consultancy fee.</description>
+    </community_chest>
+    <community_chest name="Street Repairs">
+        <type>Special</type>
+        <amount>
+            <house>40</house>
+            <hotel>115</hotel>
+        </amount>
+        <description>You are assessed for street repairs: Pay $40 per house and $115 per hotel you own.</description>
+    </community_chest>
+    <community_chest name="Beauty Contest">
+        <type>Receive</type>
+        <amount>10</amount>
+        <description>You have won second prize in a beauty contest. Collect $10.</description>
+    </community_chest>
+    <community_chest name="Inheritance">
+        <type>Receive</type>
+        <amount>100</amount>
+        <description>You inherit $100.</description>
+    </community_chest>
+    <chance name="Advance to Go">
+        <type>Move</type>
+        <index>0</index>
+        <description>Advance to "Go". (Collect $200)</description>
+    </chance>
+    <chance name="Advance to Illinois Ave">
+        <type>Move</type>
+        <index>24</index>
+        <description>Advance to Illinois Ave. If you pass Go, collect $200.</description>
+    </chance>
+    <chance name="Advance to St Charles Place">
+        <type>Move</type>
+        <index>11</index>
+        <description>Advance to St. Charles Place. If you pass Go, collect $200.</description>
+    </chance>
+    <chance name="Advance to Utility">
+        <type>Special</type>
+        <location>Utility</location>
+        <multiplier>10</multiplier>
+        <description>Advance token to nearest Utility. If unowned, you may buy it from the Bank. If owned, throw dice and pay owner a total ten times the amount thrown.</description>
+    </chance>
+    <chance name="Advance to Railroad 1">
+        <type>Special</type>
+        <location>Station</location>
+        <multiplier>2</multiplier>
+        <description>Advance token to the nearest Railroad and pay owner twice the rental to which he/she is otherwise entitled. If Railroad is unowned, you may buy it from the Bank.</description>
+    </chance>
+    <chance name="Advance to Railroad 2">
+        <type>Special</type>
+        <location>Station</location>
+        <multiplier>2</multiplier>
+        <description>Advance token to the nearest Railroad and pay owner twice the rental to which he/she is otherwise entitled. If Railroad is unowned, you may buy it from the Bank.</description>
+    </chance>
+    <chance name="Banks Pays Dividend">
+        <type>Receive</type>
+        <amount>50</amount>
+        <description>Bank pays you dividend of $50.</description>
+    </chance>
+    <chance name="Get out of Jail">
+        <type>Hold</type>
+        <description>Get out of Jail Free. This card may be kept until needed, or traded/sold.</description>
+    </chance>
+    <chance name="Go Back 3">
+        <type>Move</type>
+        <index>-3</index>
+        <description>Go Back Three {3} Spaces.</description>
+    </chance>
+    <chance name="Go to Jail">
+        <type>Move</type>
+        <index>10</index>
+        <description>Go to Jail. Go directly to Jail. Do not pass Go, do not collect $200.</description>
+    </chance>
+    <chance name="Property Repairs">
+        <type>Special</type>
+        <amount>
+            <house>25</house>
+            <hotel>100</hotel>
+        </amount>
+        <description>Make general repairs on all your property: For each house pay $25, For each hotel pay $100.</description>
+    </chance>
+    <chance name="Poor Tax">
+        <type>Pay</type>
+        <amount>15</amount>
+        <description>Pay poor tax of $15</description>
+    </chance>
+    <chance name="Advance to Reading Railroad">
+        <type>Move</type>
+        <index>5</index>
+        <description>Take a trip to Reading Railroad. If you pass Go, collect $200.</description>
+    </chance>
+    <chance name="Advance to Boardwalk">
+        <type>Move</type>
+        <index>39</index>
+        <description>Take a walk on the Boardwalk. Advance token to Boardwalk.</description>
+    </chance>
+    <chance name="Chairman of the Board">
+        <type>Pay All</type>
+        <amount>50</amount>
+        <description>You have been elected Chairman of the Board. Pay each player $50.</description>
+    </chance>
+    <chance name="Building Loan Matures">
+        <type>Receive</type>
+        <amount>150</amount>
+        <description>Your building loan matures. Receive $150.</description>
+    </chance>
+    <chance name="Crossword Competition">
+        <type>Receive</type>
+        <amount>100</amount>
+        <description>You have won a crossword competition. Collect $100.</description>
+    </chance>
+</draw_cards>
