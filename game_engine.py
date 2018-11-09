@@ -88,7 +88,7 @@ class Monopoly:
 
     def serve_jail(self, player, roll):
         player.jail_rolls += 1
-        if roll[0] == roll[1] or player.jail_rolls == 0:
+        if roll[0] == roll[1] or player.jail_rolls == 3:
             print('{} got out of Jail!'.format(str(player)))
             player.jail_rolls = 0
             player.in_jail = False
