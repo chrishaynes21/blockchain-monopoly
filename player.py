@@ -72,7 +72,8 @@ class Player:
                     self.state = PlayerState.DONE
                 else:
                     print('This is a critical transaction that must be payed. Beginning mortgaging process.')
-                    self.mortgage_to_target_value(player, blockchain, board, amount)
+                    self.mortgage_to_target_value(blockchain, board, amount)
+                    self.pay(player, amount, blockchain, critical, board)
 
     def sell_property(self, buyer, sell_property, price, blockchain):
         if blockchain.change_ownership(blockchain.get_account(self), buyer, sell_property.index, price):
@@ -85,7 +86,7 @@ class Player:
         for index in self.get_properties(blockchain):  # Transfer all properties for free
             blockchain.change_ownership(blockchain.get_account(self), player, index, 0)
 
-    def mortgage_to_target_value(self, player, blockchain, board, target_amount):
+    def mortgage_to_target_value(self, blockchain, board, target_amount):
         all_properties = self.describe_all_properties(blockchain, board)
         while self.get_balance(blockchain) < target_amount:
             index_to_edit = int(input('Index to edit: '))
@@ -114,7 +115,7 @@ class Player:
                 elif option == 3:
                     if prop_edit.type == 'Property':
                         if blockchain.get_hotel(index_to_edit):
-                            if blockchain.sell_hotel(player, index_to_edit, prop_edit.houses // 2):
+                            if blockchain.sell_hotel(self, index_to_edit, prop_edit.houses // 2):
                                 print('Successfully sold hotel for {}'.format(prop_edit))
                     else:
                         print('{} has no hotels!'.format(prop_edit))

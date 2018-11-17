@@ -40,16 +40,16 @@ class Card:
         self.description = element.find('description').text
         if self.type == 'Pay' or self.type == 'Pay All' or self.type == 'Receive' or self.type == 'Receive All':
             self.amount = int(element.find('amount').text)
-        if self.type == 'Move':
+        elif self.type == 'Move':
             self.index = int(element.find('index').text)
-        if self.type == 'Special':
+        elif self.type == 'Special':
             if self.name == 'Street Repairs' or self.name == 'Property Repairs':
                 self.house_amount = int(element.find('amount').find('house').text)
                 self.hotel_amount = int(element.find('amount').find('hotel').text)
-            if self.name == 'Advance to Utility' or self.name == 'Advance to Railroad 1' or self.name == 'Advance to ' \
+            elif self.name == 'Advance to Utility' or self.name == 'Advance to Railroad 1' or self.name == 'Advance to ' \
                                                                                                          'Railroad 2':
                 self.location = element.find('location').text
-                self.multiplier = element.find('multiplier').text
+                self.multiplier = int(element.find('multiplier').text)
 
     def __repr__(self):
         return self.name

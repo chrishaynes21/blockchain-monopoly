@@ -60,7 +60,6 @@ contract PropertyManagement {
         return propertyCount;
     }
 
-
     // A function to get all properties an owner has. 0 Gas required, but slightly
     // expensive computationally
     function getAllProperties(address owner) public view returns (uint8[] ownerProperties) {

@@ -15,14 +15,14 @@ class Space:
             self.four_house_rent = int(element.find('rent').find('four_houses').text)
             self.hotel_rent = int(element.find('rent').find('hotel').text)
             self.mortgage = int(self.price / 2)
-        if self.type == 'Station':
+        elif self.type == 'Station':
             self.price = int(element.find('price').text)
             self.standard_rent = int(element.find('rent').find('standard').text)
             self.mortgage = int(self.price / 2)
-        if self.type == 'Utility':
+        elif self.type == 'Utility':
             self.price = int(element.find('price').text)
             self.mortgage = int(self.price / 2)
-        if self.type == 'Draw':
+        elif self.type == 'Draw':
             self.draw_type = element.find('draw_type').text
 
     def __repr__(self):

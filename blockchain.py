@@ -9,8 +9,8 @@ class BlockChain:
         # Ganache GUI runs at 127.0.0.1 at port 7545
         self.w3 = Web3(Web3.HTTPProvider('http://127.0.0.1:7545'))
         compiled_contract = compile_files(['monopoly_coin.sol', 'property_management.sol'])
-        self.coin_contract_interface = compiled_contract['monopoly_coin.sol:MonopolyCoin']
-        self.property_contract_interface = compiled_contract['property_management.sol:PropertyManagement']
+        coin_contract_interface = compiled_contract['monopoly_coin.sol:MonopolyCoin']
+        property_contract_interface = compiled_contract['property_management.sol:PropertyManagement']
 
         # Set the default owner of a contract, which is the Banker at index 0
         # NOTE: The Banker is also the owner of the contract since this account is used to deploy the contract
@@ -18,26 +18,26 @@ class BlockChain:
 
         # Instantiate the contracts, getting the hash and receipt for the deployment of the contracts
         MonopolyCoin = self.w3.eth.contract(
-            abi=self.coin_contract_interface['abi'],
-            bytecode=self.coin_contract_interface['bin'])
+            abi=coin_contract_interface['abi'],
+            bytecode=coin_contract_interface['bin'])
         coin_tx_hash = MonopolyCoin.constructor().transact()
         coin_tx_receipt = self.w3.eth.waitForTransactionReceipt(coin_tx_hash)
 
         PropertyManagement = self.w3.eth.contract(
-            abi=self.property_contract_interface['abi'],
-            bytecode=self.property_contract_interface['bin'])
+            abi=property_contract_interface['abi'],
+            bytecode=property_contract_interface['bin'])
         property_tx_hash = PropertyManagement.constructor(coin_tx_receipt.contractAddress).transact()
         property_tx_receipt = self.w3.eth.waitForTransactionReceipt(property_tx_hash)
 
         # Now create an instance of the contracts with the banker as the sender
         self.monopolyCoin = self.w3.eth.contract(
             address=coin_tx_receipt.contractAddress,
-            abi=self.coin_contract_interface['abi']
+            abi=coin_contract_interface['abi']
         )
 
         self.propertyManagement = self.w3.eth.contract(
             address=property_tx_receipt.contractAddress,
-            abi=self.property_contract_interface['abi']
+            abi=property_contract_interface['abi']
         )
 
     # General function to get a players account
