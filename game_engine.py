@@ -66,6 +66,9 @@ class Monopoly:
             trade = input('Would you like to make a trade? Y/N: ')
             if trade == 'Y' or trade == 'y':
                 self.serve_trade(player)
+            edit = input('Would you like to edit properties? Y/N: ')
+            if edit == 'Y' or edit == 'y':
+                self.serve_prop_edit(player)
             self.serve_normally(player, roll)
             if roll[0] == roll[1]:
                 self.serve_turn(player, num_doubles + 1)
@@ -128,7 +131,9 @@ class Monopoly:
                 for index in self.blockchain.get_all_properties(player):
                     houses += self.blockchain.get_houses(index)
                     hotels += self.blockchain.get_hotel(index)
-                print('{} has {} houses and {} hotels and must.'.format(player, houses, hotels))
+                print('{} has {} houses and {} hotels and must pay ${}.'.format(player, houses, hotels,
+                                                                                houses * draw.house_amount +
+                                                                                hotels * draw.hotel_amount))
                 player.pay(self.banker, houses * draw.house_amount + hotels * draw.hotel_amount, self.blockchain)
             elif draw.name == 'Advance to Utility':
                 if abs(player.position - 12) >= abs(player.position - 28):
@@ -165,7 +170,7 @@ class Monopoly:
         if owner_address == self.blockchain.get_account(self.banker):
             self.serve_banker(owner_address, player, space)
         elif owner_address == self.blockchain.get_account(player):
-            self.serve_owner(owner_address, player, space)
+            print('Welcome back home {}!'.format(player))
         else:
             self.serve_other_owner(multiplier, owner_address, player, space)
 
@@ -180,31 +185,6 @@ class Monopoly:
                 print('Congrats! You bought {}!'.format(space))
             else:
                 print('Couldn\'t buy {}... :('.format(space))
-
-    def serve_owner(self, owner_address, player, space):
-        print('Welcome back Mr.{}!'.format(player))
-        if space.type == 'Property':
-            if self.blockchain.get_mortgage(space.index):
-                decision = input('{} is mortgaged. Un-mortgage for ${}? Current Balance: ${} Y/N: '.format(
-                    space, space.mortgage, player.get_balance(self.blockchain)))
-                if decision == 'Y' or decision == 'y':
-                    if self.blockchain.un_mortgage(player, space.index, space.mortgage):
-                        print('{} was un-mortgaged for ${}!'.format(space, space.mortgage))
-                    else:
-                        print('Couldn\'t un-mortgage {}'.format(space))
-            else:
-                other_properties = [s for s in self.board.monopolies[space.group] if s != space.index]
-                monopoly = True
-                for index in other_properties:
-                    if self.blockchain.get_property_owner(index) != owner_address:
-                        monopoly = False
-                        break
-                if monopoly:
-                    decision = input(
-                        'You have a monopoly on the {} group! Buy houses and hotels? Y/N: '.format(space.group))
-                    if decision == 'Y' or decision == 'y':
-                        for index in self.board.monopolies[space.group]:
-                            self.serve_houses_hotels(player, index)
 
     def serve_other_owner(self, multiplier, owner_address, player, space):
         owner = None
@@ -253,35 +233,6 @@ class Monopoly:
         else:
             print('You lucky duck, {} is mortgaged. Enjoy your free stay!'.format(space))
 
-    def serve_houses_hotels(self, player, index):
-        curr = self.board.get_property_at_index(index)
-        layout = (self.blockchain.get_houses(index), self.blockchain.get_hotel(index))
-        print('{} has {} houses and {} hotels.'.format(curr.name, layout[0], layout[1]))
-        print(
-            'Houses and hotels cost {}. Current Balance: ${}'.format(curr.houses, player.get_balance(self.blockchain)))
-        if layout[0] < 4 and layout[1] == 0:  # Can buy houses only here
-            while True:
-                amount = int(input('Enter number of houses to buy: '))
-                if amount <= 0:
-                    break
-                elif amount + layout[0] <= 4:
-                    if self.blockchain.buy_houses(player, index, amount, curr.houses * amount):
-                        print('You bought {} houses for {} for ${}!'.format(amount, curr.name, curr.houses * amount))
-                        break
-                    else:
-                        print('You can\'t afford that many, try again.')
-                else:
-                    print('Too many houses, try again.')
-        elif layout[0] == 4 and layout[1] == 0:  # Can only buy a hotel
-            decision = input('Buy Hotel? Y/N: ')
-            if decision == 'Y' or decision == 'y':
-                if self.blockchain.buy_hotel(player, index, curr.houses):
-                    print('You bought a hotel for {} for ${}!'.format(curr.name, curr.houses))
-                else:
-                    print('You can\'t afford a hotel.')
-        else:  # Already has a hotel, so they can't buy anything
-            print('You already have a hotel at {}!'.format(curr.name))
-
     def serve_trade(self, player):
         all_properties = player.describe_all_properties(self.blockchain, self.board)  # Prints all properties as well
         keep_trading = True
@@ -305,6 +256,17 @@ class Monopoly:
             decision = input('Continue trading? Y/N: ')
             if not decision == 'Y' and not decision == 'y':
                 keep_trading = False
+
+    def serve_prop_edit(self, player):
+        all_properties = player.describe_all_properties(self.blockchain, self.board)  # Prints all properties as well
+        keep_editing = True
+        while keep_editing:
+            edit_index = int(input('Index to edit: '))
+            if edit_index in all_properties:
+                player.edit_property(self.blockchain, self.board, edit_index)
+            decision = input('Continue editing? Y/N: ')
+            if not decision == 'Y' and not decision == 'y':
+                keep_editing = False
 
     # Describes a property's rent and mortgage
     @staticmethod

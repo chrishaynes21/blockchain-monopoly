@@ -42,12 +42,13 @@ class Player:
     def describe_all_properties(self, blockchain, board):
         all_properties = self.get_properties(blockchain)
         for index in all_properties:
-            property_str = '     Index: {:2} Property: {:<25} Houses: {} Hotel: {}'
+            property_str = '     Index: {:2} Property: {:<25} Houses: {} Hotel: {} Mortgaged: {}'
             current_property = board.get_property_at_index(index)
             if current_property.type == 'Property':
-                print(property_str.format(index, current_property.name, blockchain.get_houses(index), blockchain.get_hotel(index)))
+                print(property_str.format(index, current_property.name, blockchain.get_houses(index), blockchain.get_hotel(index),
+                                          blockchain.get_mortgage(index)))
             else:
-                print(property_str.format(index, current_property.name, '-', '-'))
+                print(property_str.format(index, current_property.name, '-', '-', blockchain.get_mortgage(index)))
         return all_properties
 
     # -------- Transfer methods for blockchain --------------
@@ -91,37 +92,85 @@ class Player:
         while self.get_balance(blockchain) < target_amount:
             index_to_edit = int(input('Index to edit: '))
             if index_to_edit in all_properties:
-                prop_edit = board.get_property_at_index(index_to_edit)
-                option = int(
-                    input('What do you want to do? (1) - Mortgage property (2) - Sell Houses (3) - Sell Hotel'))
-                if option == 1:
-                    if prop_edit.type == 'Property':
-                        houses = blockchain.get_houses(index_to_edit)
-                        hotel = blockchain.get_hotel(index_to_edit)
-                        if houses:
-                            blockchain.sell_houses(self, index_to_edit, houses, prop_edit.houses * houses // 2)
-                        elif hotel:
-                            blockchain.sell_hotel(self, index_to_edit, prop_edit.houses // 2)
-                    if blockchain.mortgage(self, index_to_edit, prop_edit.mortgage):
-                        print('Successfully mortgaged {}'.format(prop_edit))
-                elif option == 2:
-                    if prop_edit.type == 'Property':
-                        num_houses = int(input('How many houses would you like to sell?: '))
-                        if num_houses <= blockchain.get_houses(index_to_edit):
-                            if blockchain.sell_houses(self, index_to_edit, num_houses, prop_edit.houses * num_houses // 2):
-                                print('Successfully sold {} houses for {}'.format(num_houses, prop_edit))
-                    else:
-                        print('{} has no houses!'.format(prop_edit))
-                elif option == 3:
-                    if prop_edit.type == 'Property':
-                        if blockchain.get_hotel(index_to_edit):
-                            if blockchain.sell_hotel(self, index_to_edit, prop_edit.houses // 2):
-                                print('Successfully sold hotel for {}'.format(prop_edit))
-                    else:
-                        print('{} has no hotels!'.format(prop_edit))
-                else:
-                    print('Invalid option. Try again.')
+                self.edit_property(blockchain, board, index_to_edit)
                 print('Current Balance: ${}'.format(self.get_balance(blockchain)))
+
+    def edit_property(self, blockchain, board, index_to_edit):
+        prop_edit = board.get_property_at_index(index_to_edit)
+        option = int(
+            input('What do you want to do? (1) - Mortgage property (2) - Sell Houses (3) - Sell Hotel' +
+                  ' (4) - Unmortgage (5) - Buy Houses and Hotels: '))
+        if option == 1:
+            houses = blockchain.get_houses(index_to_edit)
+            hotel = blockchain.get_hotel(index_to_edit)
+            if houses:
+                blockchain.sell_houses(self, index_to_edit, houses, prop_edit.houses * houses // 2)
+            elif hotel:
+                blockchain.sell_hotel(self, index_to_edit, prop_edit.houses // 2)
+            if blockchain.mortgage(self, index_to_edit, prop_edit.mortgage):
+                print('Successfully mortgaged {}'.format(prop_edit))
+        elif option == 2:
+            num_houses = int(input('How many houses would you like to sell?: '))
+            if num_houses <= blockchain.get_houses(index_to_edit):
+                if blockchain.sell_houses(self, index_to_edit, num_houses, prop_edit.houses * num_houses // 2):
+                    print('Successfully sold {} houses for {}'.format(num_houses, prop_edit))
+            else:
+                print('{} has no houses!'.format(prop_edit))
+        elif option == 3:
+            if blockchain.get_hotel(index_to_edit):
+                if blockchain.sell_hotel(self, index_to_edit, prop_edit.houses // 2):
+                    print('Successfully sold hotel for {}'.format(prop_edit))
+            else:
+                print('{} has no hotels!'.format(prop_edit))
+        elif option == 4:
+            if blockchain.get_mortgage(index_to_edit):
+                if blockchain.un_mortgage(self, index_to_edit, prop_edit.mortgage):
+                    print('Successfully unmortgaged {} for ${}'.format(prop_edit, prop_edit.mortgage))
+                else:
+                    print('Could not unmortgage {}.'.format(prop_edit))
+            else:
+                print('{} is not mortgaged.'.format(prop_edit))
+        elif option == 5:
+            other_properties = [s for s in board.monopolies[prop_edit.group] if s != prop_edit.index]
+            monopoly = True
+            for index in other_properties:
+                if blockchain.get_property_owner(index) != blockchain.get_account(self):
+                    monopoly = False
+                    break
+            if monopoly:
+                self.buy_houses_hotels(blockchain, prop_edit, index_to_edit)
+            else:
+                print('You need a monopoly on the {} group to buy houses and hotels'.format(prop_edit.group))
+        else:
+            print('Invalid option.')
+
+    def buy_houses_hotels(self, blockchain, property, index):
+        layout = (blockchain.get_houses(index), blockchain.get_hotel(index))
+        print('{} has {} houses and {} hotels.'.format(property.name, layout[0], layout[1]))
+        print(
+            'Houses and hotels cost {}. Current Balance: ${}'.format(property.houses, self.get_balance(blockchain)))
+        if layout[0] < 4 and layout[1] == 0:  # Can buy houses only here
+            while True:
+                amount = int(input('Enter number of houses to buy: '))
+                if amount <= 0:
+                    break
+                elif amount + layout[0] <= 4:
+                    if blockchain.buy_houses(self, index, amount, property.houses * amount):
+                        print('You bought {} houses for {} for ${}!'.format(amount, property.name, property.houses * amount))
+                        break
+                    else:
+                        print('You can\'t afford that many, try again.')
+                else:
+                    print('Too many houses, try again.')
+        elif layout[0] == 4 and layout[1] == 0:  # Can only buy a hotel
+            decision = input('Buy Hotel? Y/N: ')
+            if decision == 'Y' or decision == 'y':
+                if blockchain.buy_hotel(self, index, property.houses):
+                    print('You bought a hotel for {} for ${}!'.format(property.name, property.houses))
+                else:
+                    print('You can\'t afford a hotel.')
+        else:  # Already has a hotel, so they can't buy anything
+            print('You already have a hotel at {}!'.format(property.name))
 
 
 class Bank:

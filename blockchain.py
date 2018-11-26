@@ -110,8 +110,8 @@ class BlockChain:
 
     def buy_houses(self, player, index, amount, price):
         player_address = self.get_account(player)
-        if self.get_balance(player) > price and self.get_houses(index) + amount < 4 and self.get_hotel(index) == 0:
-            return self.propertyManagement.function.buyHouses(player_address, index, amount, price).transact({
+        if self.get_balance(player) >= price and self.get_houses(index) + amount <= 4 and self.get_hotel(index) == 0:
+            return self.propertyManagement.functions.buyHouses(player_address, index, amount, price).transact({
                 'from': player_address
             })
         else:
@@ -119,8 +119,8 @@ class BlockChain:
 
     def buy_hotel(self, player, index, price):
         player_address = self.get_account(player)
-        if self.get_balance(player) > price and self.get_houses(index) == 4 and self.get_hotel(index) == 0:
-            return self.propertyManagement.function.buyHotel(player_address, index, price).transact({
+        if self.get_balance(player) >= price and self.get_houses(index) == 4 and self.get_hotel(index) == 0:
+            return self.propertyManagement.functions.buyHotel(player_address, index, price).transact({
                 'from': player_address
             })
         else:
@@ -128,8 +128,8 @@ class BlockChain:
 
     def un_mortgage(self, player, index, price):
         player_address = self.get_account(player)
-        if self.get_balance(player) > price and self.get_mortgage(index):
-            return self.propertyManagement.function.unMortgage(player_address, index, price).transact({
+        if self.get_balance(player) >= price and self.get_mortgage(index):
+            return self.propertyManagement.functions.unMortgage(player_address, index, price).transact({
                 'from': player_address
             })
         else:
@@ -137,8 +137,9 @@ class BlockChain:
 
     def sell_houses(self, player, index, amount, price):
         player_address = self.get_account(player)
-        if self.get_balance(self.w3.eth.accounts[0]) > price and self.get_houses(index) + amount <= 0 and self.get_hotel(index) == 0:
-            return self.propertyManagement.function.sellHouses(player_address, index, amount, price).transact({
+        bank_balance = self.monopolyCoin.functions.getBalance(self.w3.eth.accounts[0]).call()
+        if bank_balance >= price and self.get_houses(index) - amount >= 0 and self.get_hotel(index) == 0:
+            return self.propertyManagement.functions.sellHouses(player_address, index, amount, price).transact({
                 'from': player_address
             })
         else:
@@ -146,8 +147,9 @@ class BlockChain:
 
     def sell_hotel(self, player, index, price):
         player_address = self.get_account(player)
-        if self.get_balance(self.w3.eth.accounts[0]) > price and self.get_hotel(index) == 1:
-            return self.propertyManagement.function.sellHotel(player_address, index, price).transact({
+        bank_balance = self.monopolyCoin.functions.getBalance(self.w3.eth.accounts[0]).call()
+        if bank_balance >= price and self.get_hotel(index) == 1:
+            return self.propertyManagement.functions.sellHotel(player_address, index, price).transact({
                 'from': player_address
             })
         else:
@@ -155,9 +157,9 @@ class BlockChain:
 
     def mortgage(self, player, index, price):
         player_address = self.get_account(player)
-        if self.get_balance(self.w3.eth.accounts[0]) > price and self.get_houses(index) \
-                and self.get_hotel(index) == 0 and not self.get_mortgage(index):
-            return self.propertyManagement.function.mortgage(player_address, index, price).transact({
+        bank_balance = self.monopolyCoin.functions.getBalance(self.w3.eth.accounts[0]).call()
+        if bank_balance >= price and self.get_houses(index) == 0 and self.get_hotel(index) == 0 and not self.get_mortgage(index):
+            return self.propertyManagement.functions.mortgage(player_address, index, price).transact({
                 'from': player_address
             })
         else:
