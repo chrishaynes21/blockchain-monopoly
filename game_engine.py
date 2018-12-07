@@ -142,7 +142,7 @@ class Monopoly:
                     index = 12
                 self.move_player_to(player, index)
                 print('{} moved to: {}'.format(player, self.board.get_property_at_index(index).name))
-                self.serve_property(player, self.board.get_property_at_index(index), 10)
+                self.serve_property(player, self.board.get_property_at_index(index), draw.name)
             elif draw.name == 'Advance to Railroad 1' or draw.name == 'Advance to Railroad 2':
                 if player.position == 7:
                     index = 5
@@ -152,7 +152,7 @@ class Monopoly:
                     index = 35
                 self.move_player_to(player, index)
                 print('{} moved to: {}'.format(player, self.board.get_property_at_index(index).name))
-                self.serve_property(player, self.board.get_property_at_index(index), 10)
+                self.serve_property(player, self.board.get_property_at_index(index), draw.multiplier)
 
     def serve_special_space(self, player, space):
         if space.name == 'Income Tax':

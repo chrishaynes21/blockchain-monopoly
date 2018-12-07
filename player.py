@@ -78,7 +78,7 @@ class Player:
 
     def sell_property(self, buyer, sell_property, price, blockchain):
         if blockchain.change_ownership(blockchain.get_account(self), buyer, sell_property.index, price):
-            print('{} traded {} to {} for ${}!'.format(self, buyer, sell_property, price))
+            print('{} traded {} to {} for ${}!'.format(self, sell_property, buyer, price))
         else:
             print('Couldn\'t sell {} to {} for ${}.'.format(sell_property, buyer, price))
 
